@@ -14,6 +14,9 @@ import { ReportissueComponent } from './reportissue/reportissue.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgChartsModule } from 'ng2-charts';
 import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import { FormsModule } from '@angular/forms';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
+    MatInputModule,
+    MatCardModule,
+    ReactiveFormsModule,
     NgChartsModule,
     FormsModule,
   ],

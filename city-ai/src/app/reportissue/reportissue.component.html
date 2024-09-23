@@ -1,1 +1,38 @@
-<p>reportissue works!</p>
+<div class="report-container">
+    <mat-card>
+      <h2>Report an Issue</h2>
+  
+      <form [formGroup]="reportForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Title</mat-label>
+          <input matInput formControlName="title" placeholder="Enter issue title" required />
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description" rows="4" placeholder="Describe the issue" required></textarea>
+        </mat-form-field>
+  
+        <div class="upload-section">
+          <label for="imageUpload">
+            <img *ngIf="imagePreview" [src]="imagePreview" class="uploaded-image" alt="Uploaded Image" />
+            <input type="file" id="imageUpload" (change)="onImageUpload($event)" accept="image/*" capture="environment" />
+            <span>Upload Image / Take Picture</span>
+          </label>
+        </div>
+  
+        <div class="location-section">
+          <button mat-raised-button color="primary" type="button" (click)="getLocation()">
+            Get Location
+          </button>
+          <div *ngIf="location">
+            <p><strong>Latitude:</strong> {{ location.latitude }}</p>
+            <p><strong>Longitude:</strong> {{ location.longitude }}</p>
+          </div>
+        </div>
+  
+        <button mat-raised-button color="primary" type="submit" [disabled]="reportForm.invalid">Submit</button>
+      </form>
+    </mat-card>
+  </div>
+  
