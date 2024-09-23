@@ -22,20 +22,19 @@ export class DashboardComponent {
   
   totalIncidentsReported: number = this.tickets.length;
   totalIncidentsResolved: number = this.tickets.filter(t => t.status === 'Resolved').length;
-  activeTickets: Ticket[] = this.tickets.filter(t => t.status === 'Active');
   
   chartData = {
-    labels: ['Reported', 'Resolved'],
+    labels: ['Resolved', 'Active'],
     datasets: [{
-      data: [this.totalIncidentsReported, this.totalIncidentsResolved],
+      data: [this.totalIncidentsResolved, this.totalIncidentsReported - this.totalIncidentsResolved],
       backgroundColor: ['#36A2EB', '#FF6384'],
     }]
   };
-
+  
   searchTerm: string = '';
 
   get filteredTickets() {
-    return this.activeTickets.filter(ticket => 
+    return this.tickets.filter(ticket => 
       ticket.title.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
@@ -43,6 +42,6 @@ export class DashboardComponent {
   closeTicket(ticket: Ticket) {
     ticket.status = 'Resolved';
     this.totalIncidentsResolved++;
-    this.activeTickets = this.activeTickets.filter(t => t.id !== ticket.id);
+    this.tickets = this.tickets.filter(t => t.id !== ticket.id);
   }
 }

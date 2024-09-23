@@ -28,4 +28,12 @@
   th {
     background-color: #f2f2f2;
   }
+
+  /* dashboard.component.css */
+.chart-container {
+  width: 300px; /* Adjust as needed */
+  height: 300px; /* Adjust as needed */
+  margin: auto; /* Center the chart */
+}
+
   

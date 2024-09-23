@@ -1,42 +1,43 @@
 <!-- dashboard.component.html -->
 <div class="dashboard">
-    <h1>Incident Dashboard</h1>
-    
-    <div class="charts">
-      <div>
-        <h2>Total Incidents Reported: {{ totalIncidentsReported }}</h2>
-        <h2>Total Incidents Resolved: {{ totalIncidentsResolved }}</h2>
-        <canvas baseChart
-                [datasets]="chartData.datasets"
-                [labels]="chartData.labels"
-                chartType="pie"></canvas>
-      </div>
+  <h1>Incident Dashboard</h1>
+  
+  <div class="charts">
+    <div class="chart-container">
+      <canvas baseChart
+              [datasets]="chartData.datasets"
+              [labels]="chartData.labels"
+              chartType="doughnut"
+              [options]="{
+                responsive: true,
+                maintainAspectRatio: false
+              }"></canvas>
     </div>
-    
-    <div class="ticket-search">
-      <input [(ngModel)]="searchTerm" placeholder="Search Active Tickets" />
-    </div>
-    
-    <h3>Active Tickets</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let ticket of filteredTickets">
-          <td>{{ ticket.id }}</td>
-          <td>{{ ticket.title }}</td>
-          <td>{{ ticket.description }}</td>
-          <td>
-            <button (click)="closeTicket(ticket)">Close</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
   </div>
   
+  <div class="ticket-search">
+    <input [(ngModel)]="searchTerm" placeholder="Search Active Tickets" />
+  </div>
+  
+  <h3>Active Tickets</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ticket of filteredTickets">
+        <td>{{ ticket.id }}</td>
+        <td>{{ ticket.title }}</td>
+        <td>{{ ticket.description }}</td>
+        <td>
+          <button (click)="closeTicket(ticket)">Close</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
