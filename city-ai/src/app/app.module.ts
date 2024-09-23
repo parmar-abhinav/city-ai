@@ -12,6 +12,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { HomeComponent } from './home/home.component';
 import { ReportissueComponent } from './reportissue/reportissue.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
+    NgChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
