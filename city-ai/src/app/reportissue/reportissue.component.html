@@ -1,37 +1,58 @@
 <div class="report-container">
-    <mat-card>
-      <h2>Report an Issue</h2>
+    <mat-card class="report-card">
+      <div class="header">
+        <mat-icon class="icon">report_problem</mat-icon>
+        <h2>Report an Issue</h2>
+      </div>
   
-      <form [formGroup]="reportForm" (ngSubmit)="onSubmit()">
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label>Title</mat-label>
-          <input matInput formControlName="title" placeholder="Enter issue title" required />
-        </mat-form-field>
-  
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label>Description</mat-label>
-          <textarea matInput formControlName="description" rows="4" placeholder="Describe the issue" required></textarea>
-        </mat-form-field>
-  
-        <div class="upload-section">
-          <label for="imageUpload">
-            <img *ngIf="imagePreview" [src]="imagePreview" class="uploaded-image" alt="Uploaded Image" />
-            <input type="file" id="imageUpload" (change)="onImageUpload($event)" accept="image/*" capture="environment" />
-            <span>Upload Image / Take Picture</span>
-          </label>
+      <form [formGroup]="reportForm" (ngSubmit)="onSubmit()" class="form-container">
+        <div class="form-field">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Issue Title</mat-label>
+            <input matInput formControlName="title" placeholder="Enter issue title" required />
+            <mat-error *ngIf="reportForm.get('title')?.invalid && reportForm.get('title')?.touched">
+              Title is required
+            </mat-error>
+          </mat-form-field>
         </div>
   
-        <div class="location-section">
-          <button mat-raised-button color="primary" type="button" (click)="getLocation()">
-            Get Location
-          </button>
-          <div *ngIf="location">
-            <p><strong>Latitude:</strong> {{ location.latitude }}</p>
-            <p><strong>Longitude:</strong> {{ location.longitude }}</p>
+        <div class="form-field">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Issue Description</mat-label>
+            <textarea matInput formControlName="description" rows="4" placeholder="Describe the issue" required></textarea>
+            <mat-error *ngIf="reportForm.get('description')?.invalid && reportForm.get('description')?.touched">
+              Description is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div class="form-field upload-section">
+          <label for="imageUpload">
+            <mat-icon class="icon">camera_alt</mat-icon>
+            <span>Upload Image / Take Picture</span>
+          </label>
+          <input type="file" id="imageUpload" (change)="onImageUpload($event)" accept="image/*" capture="environment" />
+          <div class="image-preview" *ngIf="imagePreview">
+            <img [src]="imagePreview" alt="Uploaded Image" />
           </div>
         </div>
   
-        <button mat-raised-button color="primary" type="submit" [disabled]="reportForm.invalid">Submit</button>
+        <div class="form-field">
+          <button mat-raised-button color="primary" type="button" (click)="getLocation()">
+            <mat-icon class="icon">my_location</mat-icon> Get Location
+          </button>
+          <div class="location-display" *ngIf="location">
+            <mat-icon class="icon">place</mat-icon>
+            <span>Lat: {{ location.latitude }}, Lng: {{ location.longitude }}</span>
+          </div>
+        </div>
+  
+        <div class="form-actions">
+          <button mat-raised-button color="primary" type="submit" [disabled]="reportForm.invalid">
+            Submit
+          </button>
+          <button mat-button type="reset" (click)="onReset()">Reset</button>
+        </div>
       </form>
     </mat-card>
   </div>

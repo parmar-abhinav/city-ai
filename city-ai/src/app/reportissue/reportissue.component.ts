@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-reportissue',
   templateUrl: './reportissue.component.html',
   styleUrls: ['./reportissue.component.css']
 })
 export class ReportissueComponent {
-  
   reportForm: FormGroup;
   imagePreview: string | ArrayBuffer | null = null;
   location: { latitude: number; longitude: number } | null = null;
@@ -61,5 +61,11 @@ export class ReportissueComponent {
       // Handle form submission logic here (e.g., send to API)
       console.log('Issue reported:', formData);
     }
+  }
+
+  onReset(): void {
+    this.reportForm.reset();
+    this.imagePreview = null;
+    this.location = null;
   }
 }
