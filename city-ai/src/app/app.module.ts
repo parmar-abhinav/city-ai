@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { ReportissueComponent } from './reportissue/reportissue.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgChartsModule } from 'ng2-charts';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { NgChartsModule } from 'ng2-charts';
     MatSidenavModule,
     MatIconModule,
     NgChartsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
